@@ -1,71 +1,85 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { ArrowDown, Download, Mail, MapPin, Calendar, Sparkles } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "@/components/language-provider"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowDown,
+  Download,
+  Mail,
+  MapPin,
+  Calendar,
+  Sparkles,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/components/language-provider";
 
 export function HeroSection() {
-  const { t } = useLanguage()
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
-  const [displayText, setDisplayText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const { t } = useLanguage();
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const titles = ["Software Engineer", "Frontend Developer", "Project Manager"]
+  const titles = ["Software Engineer", "Frontend Developer", "Project Manager"];
 
   useEffect(() => {
-    const currentTitle = titles[currentTitleIndex]
-    const typingSpeed = isDeleting ? 80 : 120
-    const pauseTime = isDeleting ? 1000 : 3000
+    const currentTitle = titles[currentTitleIndex];
+    const typingSpeed = isDeleting ? 80 : 120;
+    const pauseTime = isDeleting ? 1000 : 3000;
 
     const timeout = setTimeout(() => {
       if (!isDeleting && displayText === currentTitle) {
-        setTimeout(() => setIsDeleting(true), pauseTime)
+        setTimeout(() => setIsDeleting(true), pauseTime);
       } else if (isDeleting && displayText === "") {
-        setIsDeleting(false)
-        setCurrentTitleIndex((prev) => (prev + 1) % titles.length)
+        setIsDeleting(false);
+        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
       } else {
-        setDisplayText((prev) => (isDeleting ? prev.slice(0, -1) : currentTitle.slice(0, prev.length + 1)))
+        setDisplayText((prev) =>
+          isDeleting
+            ? prev.slice(0, -1)
+            : currentTitle.slice(0, prev.length + 1)
+        );
       }
-    }, typingSpeed)
+    }, typingSpeed);
 
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentTitleIndex, titles])
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentTitleIndex, titles]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight = document.body.scrollHeight - window.innerHeight
-      const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(progress)
-    }
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToContact = () => {
-    const element = document.querySelector("#contact")
+    const element = document.querySelector("#contact");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   const downloadResume = () => {
-    const link = document.createElement("a")
-    link.href = "/resume-faten-selmi.pdf"
-    link.download = "Faten-Selmi-Resume.pdf"
-    link.click()
-  }
+    const link = document.createElement("a");
+    link.href = "/resume-faten-selmi.pdf";
+    link.download = "Faten-Selmi-Resume.pdf";
+    link.click();
+  };
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-blue/5 to-purple/5"
+      className="min-h-screen flex items-center justify-center relative py-16 overflow-hidden bg-gradient-to-br from-background via-blue/5 to-purple/5"
     >
       {/* Progress Bar */}
-      <motion.div className="progress-bar" style={{ scaleX: scrollProgress / 100 }} />
+      <motion.div
+        className="progress-bar"
+        style={{ scaleX: scrollProgress / 100 }}
+      />
 
       {/* Floating Particles */}
       <div className="particles">
@@ -104,7 +118,9 @@ export function HeroSection() {
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <Sparkles className="h-6 w-6 text-purple animate-pulse" />
-                <p className="text-lg text-muted-foreground font-medium">{t("hero.greeting")}</p>
+                <p className="text-lg text-muted-foreground font-medium">
+                  {t("hero.greeting")}
+                </p>
                 <Sparkles className="h-6 w-6 text-blue animate-pulse" />
               </div>
               <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gradient-rainbow leading-tight">
@@ -191,7 +207,9 @@ export function HeroSection() {
               <div className="w-80 h-80 lg:w-96 lg:h-96 relative">
                 <div className="w-full h-full rounded-3xl bg-gradient-to-br from-blue/20 via-purple/20 to-pink/20 border-2 border-gradient flex items-center justify-center relative overflow-hidden hover-glow">
                   {/* Placeholder for photo */}
-                  <div className="text-8xl font-bold text-gradient-rainbow font-serif">FS</div>
+                  <div className="text-8xl font-bold text-gradient-rainbow font-serif">
+                    FS
+                  </div>
 
                   {/* Subtle overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
@@ -211,8 +229,12 @@ export function HeroSection() {
                 className="absolute -bottom-4 -right-4 glass-effect-purple px-6 py-3 rounded-2xl border border-purple/30 hover-scale"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gradient-purple">21</div>
-                  <div className="text-xs text-muted-foreground font-medium">Years Old</div>
+                  <div className="text-2xl font-bold text-gradient-purple">
+                    21
+                  </div>
+                  <div className="text-xs text-muted-foreground font-medium">
+                    Years Old
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -228,7 +250,11 @@ export function HeroSection() {
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
             className="flex flex-col items-center gap-2 text-muted-foreground"
           >
             <span className="text-sm font-medium">Scroll to explore</span>
@@ -237,5 +263,5 @@ export function HeroSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
