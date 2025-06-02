@@ -1,0 +1,471 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Enhanced Color Palette with blue-focused design */
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%; /* Darker blue-gray for better contrast */
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 217 33% 17%; /* Deep Navy Blue #1e293b */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 187 100% 42%; /* Vibrant Teal #06b6d4 */
+    --secondary-foreground: 215 28% 17%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 20% 45%; /* Adjusted for blue harmony */
+    --accent: 217 91% 60%; /* Changed to Electric Blue instead of gold */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 33% 17%;
+    --radius: 0.75rem;
+    --success: 142.1 76.2% 36.3%;
+
+    /* Additional vibrant colors with blue focus */
+    --purple: 262 83% 58%; /* Electric Purple #8b5cf6 */
+    --pink: 330 81% 60%; /* Vibrant Pink #ec4899 */
+    --orange: 25 95% 53%; /* Bright Orange #f97316 */
+    --green: 142 71% 45%; /* Fresh Green #10b981 */
+    --blue: 217 91% 60%; /* Electric Blue #3b82f6 */
+    --indigo: 239 84% 67%; /* Bright Indigo #6366f1 */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%; /* Dark Charcoal #0f172a */
+    --foreground: 210 40% 92%; /* Much lighter for better readability */
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 92%; /* Lighter card text */
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 92%;
+    --primary: 217 91% 60%; /* Electric Blue for primary in dark mode */
+    --primary-foreground: 222.2 84% 4.9%; /* Dark text on blue background */
+    --secondary: 187 100% 45%; /* Slightly adjusted teal */
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 75%; /* Much lighter muted text */
+    --accent: 217 91% 65%; /* Brighter blue accent */
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 62.8% 50%; /* Slightly brighter red */
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 22%; /* Slightly lighter borders */
+    --input: 217.2 32.6% 20%; /* Slightly lighter inputs */
+    --ring: 217 91% 60%; /* Blue ring color */
+    --success: 142.1 70.6% 50%; /* Brighter success color */
+
+    /* Dark mode vibrant colors - optimized for visibility */
+    --purple: 262 83% 65%;
+    --pink: 330 81% 65%;
+    --orange: 25 95% 58%;
+    --green: 142 71% 50%;
+    --blue: 217 91% 65%;
+    --indigo: 239 84% 72%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+    /* Enhanced heading colors for dark mode */
+    color: hsl(var(--foreground));
+  }
+
+  /* Better text contrast in dark mode */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: hsl(210 40% 95%); /* Even lighter for headings */
+  }
+
+  /* Improved paragraph text in dark mode */
+  .dark p {
+    color: hsl(
+      210 40% 88%
+    ); /* Slightly softer than headings but still readable */
+  }
+
+  /* Better link colors */
+  a {
+    color: hsl(var(--blue));
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: hsl(217 91% 70%); /* Lighter blue on hover */
+  }
+
+  .dark a {
+    color: var(--foreground);
+  }
+
+  .dark a:hover {
+    color: hsl(217 91% 80%);
+  }
+
+  code,
+  pre {
+    font-family: var(--font-jetbrains), "Fira Code", "Consolas", "Monaco",
+      monospace;
+    background: hsl(var(--muted));
+    color: hsl(var(--blue));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  .dark code,
+  .dark pre {
+    background: hsl(217.2 32.6% 15%);
+    color: hsl(217 91% 75%);
+  }
+}
+
+@layer utilities {
+  /* Enhanced animations */
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .bounce-in {
+    animation: bounceIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Blue-focused gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  }
+
+  .gradient-blue-deep {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+  }
+
+  .gradient-blue-light {
+    background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  }
+
+  .gradient-pink {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+  }
+
+  .gradient-orange {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  }
+
+  .gradient-blue-ocean {
+    background: linear-gradient(
+      135deg,
+      #1e40af 0%,
+      #3b82f6 25%,
+      #06b6d4 50%,
+      #0891b2 75%,
+      #164e63 100%
+    );
+  }
+
+  /* Glass effect with blue tints */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-effect-blue {
+    background: rgba(59, 130, 246, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .glass-effect-blue-deep {
+    background: rgba(30, 64, 175, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .dark .glass-effect {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .dark .glass-effect-blue {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  /* Enhanced hover effects with blue theme */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+
+  .hover-glow-blue:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Typography with blue gradients */
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue-light {
+    background: linear-gradient(135deg, #60a5fa, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-ocean {
+    background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Blue-focused borders */
+  .border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, #3b82f6, #06b6d4, #1e40af) border-box;
+  }
+
+  .dark .border-gradient {
+    background: linear-gradient(#0f172a, #0f172a) padding-box,
+      linear-gradient(135deg, #3b82f6, #06b6d4, #60a5fa) border-box;
+  }
+
+  /* Text color utilities for better dark mode support */
+  .text-light {
+    color: hsl(210 40% 90%);
+  }
+
+  .text-lighter {
+    color: hsl(210 40% 95%);
+  }
+
+  .dark .text-muted {
+    color: hsl(210 40% 75%) !important;
+  }
+
+  .dark .text-muted-foreground {
+    color: hsl(210 40% 70%) !important;
+  }
+}
+
+/* Enhanced scrollbar with blue colors */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #1e40af);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #60a5fa, #3b82f6);
+}
+
+/* Selection with blue color */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: hsl(var(--foreground));
+}
+
+.dark ::selection {
+  background: rgba(59, 130, 246, 0.4);
+  color: hsl(210 40% 95%);
+}
+
+/* Focus styles with blue */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Progress bar with blue gradient */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4);
+  transform-origin: 0%;
+  z-index: 100;
+}
+
+/* Floating particles background with blue theme */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(2) {
+  background: #1e40af;
+  animation-delay: -2s;
+}
+.particle:nth-child(3) {
+  background: #06b6d4;
+  animation-delay: -4s;
+}
+.particle:nth-child(4) {
+  background: #60a5fa;
+  animation-delay: -6s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
