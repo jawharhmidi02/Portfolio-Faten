@@ -117,11 +117,11 @@ export function HeroSection() {
               className="space-y-2"
             >
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                <Sparkles className="h-6 w-6 text-purple animate-pulse" />
+                {/* <Sparkles className="h-6 w-6 text-purple animate-pulse" /> */}
                 <p className="text-lg text-muted-foreground font-medium">
                   {t("hero.greeting")}
                 </p>
-                <Sparkles className="h-6 w-6 text-blue animate-pulse" />
+                {/* <Sparkles className="h-6 w-6 text-blue animate-pulse" /> */}
               </div>
               <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gradient-rainbow leading-tight">
                 Faten Selmi
